@@ -53,23 +53,21 @@ passport.use(
       and we can send them things such as emails.
       The profile has all of the user's identifying information such as their name and email.
     */
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       // We find out if the user signing in is a new or existing user
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          // We already have a record with the given profile ID
-          done(null, existingUser);
-        } else {
-          /* 
+      const existingUser = await User.findOne({ googleId: profile.id });
+
+      if (existingUser) {
+        // We already have a record with the given profile ID
+        return done(null, existingUser);
+      }
+      /* 
             We don't have a record with this profile ID, so make one using our mongoose
             model class. The ID is pulled from the user's Google profile and and then it's
             saved in our mongo database.
           */
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
     }
   )
 );

@@ -21,15 +21,21 @@ module.exports = app => {
     Once we have selected the account to authenticate, we put the user
     on hold and take the code from the URL. Afterwards, the code below
     sends a request to Google with the code we received and we retrieve
-    the users information.
+    the users information and finally redirect them to their dashboard.
   */
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/submissions");
+    }
+  );
 
   // When we visit this route, the logout method takes the cookie that
   // contains the ID and gets rid of it
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect("/");
   });
 
   // After our authentication flow, we provide the user's info
