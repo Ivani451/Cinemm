@@ -17,7 +17,6 @@ module.exports = app => {
   app.post("/api/submissions", async (req, res) => {
     const title = req.body.title;
     const review = req.body.review;
-    console.log(title);
     const submission = new Submission({
       title,
       review,

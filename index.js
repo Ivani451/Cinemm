@@ -15,6 +15,7 @@ require("./models/Submission");
 require("./services/passport");
 
 // Connecting mongoose to our remote mongo database
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 const app = express();
