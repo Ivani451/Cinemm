@@ -4,12 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 // onCancel, formValues, and submitSubmission are destructured
-const SubmissionFormReview = ({
-  onCancel,
-  formValues,
-  submitSubmission,
-  history
-}) => {
+const SubmissionFormReview = ({ onCancel, formValues, submitSubmission }) => {
   return (
     <div>
       <h6>

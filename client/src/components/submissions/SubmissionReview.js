@@ -5,10 +5,7 @@ export default ({ input, label, meta: { error, touched } }) => {
   return (
     <div>
       <label>{label}</label>
-      <div className="field-input">
-        <input {...input} style={{ marginBottom: "5px" }} />
-      </div>
-
+      <textarea {...input} style={{ marginBottom: "5px" }} />
       <div className="black-text" style={{ marginBottom: "20px" }}>
         {touched && error}
       </div>

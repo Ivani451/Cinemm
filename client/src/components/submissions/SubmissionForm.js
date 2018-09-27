@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import SubmissionField from "./SubmissionField";
+import SubmissionReview from "./SubmissionReview";
 
 /* 
     Here we use redux-form rather than traditional redux. We do this to save
@@ -15,21 +16,25 @@ class SubmissionForm extends Component {
     return (
       <div>
         <Field
+          className="area"
           label="Movie Title"
           type="text"
           name="title"
           component={SubmissionField}
         />
+
         <Field
+          className="area"
           label="Review"
           type="text"
           name="review"
-          component={SubmissionField}
+          component={SubmissionReview}
         />
       </div>
     );
   }
 
+  // Our cancel and submit buttons for the submission form are defined here
   render() {
     return (
       <div>
@@ -53,6 +58,8 @@ class SubmissionForm extends Component {
   }
 }
 
+// Using redux-form's built-in validation method, we validated whethere
+// the user has inputed any text in our submission fields
 function validate(values) {
   const errors = {};
   if (!values.title) {

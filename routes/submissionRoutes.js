@@ -25,4 +25,14 @@ module.exports = app => {
     });
     submission.save();
   });
+
+  app.delete("/api/submissions/delete/:id", async (req, res) => {
+    await Submission.findByIdAndRemove(req.params.id, function(err) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json({ message: "Deleted!" });
+      }
+    });
+  });
 };

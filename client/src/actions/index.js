@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_SUBMISSIONS } from "./types";
+import { FETCH_USER, FETCH_SUBMISSIONS, DELETE_SUBMISSION } from "./types";
 
 /* 
     We verify whether the user is logged in or not by making a request to
@@ -25,4 +25,10 @@ export const fetchSubmissions = () => async dispatch => {
   const res = await axios.get("/api/submissions");
 
   dispatch({ type: FETCH_SUBMISSIONS, payload: res.data });
+};
+
+export const deleteSubmission = (id, history) => async dispatch => {
+  const res = await axios.delete(`/api/submissions/delete/${id}`, id);
+  history.push("/submissions");
+  dispatch({ type: DELETE_SUBMISSION, payload: res.data });
 };

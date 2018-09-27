@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import swal from "sweetalert";
 import { connect } from "react-redux";
-import { fetchSubmissions } from "../../actions";
+import { fetchSubmissions, deleteSubmission } from "../../actions";
+import { withRouter } from "react-router-dom";
 
 // Here we fetch our submissions that the user has created
 class SubmissionList extends Component {
@@ -9,20 +9,7 @@ class SubmissionList extends Component {
     this.props.fetchSubmissions();
   }
 
-  // The alert box that pops up to confirm deletion of submission using
-  // the 'sweetalert' library
-  confirmDelete() {
-    swal("Are you sure you want to delete the review?", {
-      buttons: [true, "Yes"]
-    }).then(willDelete => {
-      if (willDelete) {
-        // This is where we delete the entry from mongodb
-        alert("cool");
-        swal("Deleted!", "Your review has been deleted!", "success");
-      }
-    });
-  }
-
+  // This renders the submitted reviews the user has made
   renderSubmissions() {
     return this.props.submissions.map(submission => {
       return (
@@ -35,7 +22,12 @@ class SubmissionList extends Component {
             </label>
             <button
               className="pink lighten-2 btn-flat white-text right"
-              onClick={() => this.confirmDelete()}
+              onClick={() => {
+                this.props.deleteSubmission(submission._id, this.props.history);
+
+                // the page is reloaded after the submission is deleted
+                window.location.reload();
+              }}
             >
               Delete
             </button>
@@ -56,5 +48,5 @@ function mapStateToProps({ submissions }) {
 
 export default connect(
   mapStateToProps,
-  { fetchSubmissions }
-)(SubmissionList);
+  { fetchSubmissions, deleteSubmission }
+)(withRouter(SubmissionList));

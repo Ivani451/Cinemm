@@ -1,0 +1,33 @@
+#landing {
+  color: white;
+  opacity: 50%;
+}
+
+body {
+  background-image: url("../img/background.jpeg");
+  opacity: 40%;
+}
+
+.landing-movie {
+  color: #303f9f;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+label {
+  color: white;
+}
+
+SubmissionField {
+  color: white;
+}
+
+textarea {
+  max-height: 400px;
+  height: 200px;
+  background: #9fa8da;
+}
+
+.field-input {
+  background: #9fa8da;
+}
