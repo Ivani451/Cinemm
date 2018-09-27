@@ -13,11 +13,13 @@ const SubmissionFormReview = ({ onCancel, formValues, submitSubmission }) => {
       <div>
         <div>
           <label>Movie Title</label>
-          <div>{formValues.title}</div>
+          <div className="form-review">{formValues.title}</div>
         </div>
         <div>
           <label>Review</label>
-          <div>{formValues.review}</div>
+          <textarea readOnly className="form-review">
+            {formValues.review}
+          </textarea>
         </div>
       </div>
 
