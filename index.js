@@ -16,7 +16,10 @@ require("./services/passport");
 
 // Connecting mongoose to our remote mongo database
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI);
+mongoose.connect(
+  keys.mongoURI,
+  { useNewUrlParser: true }
+);
 
 const app = express();
 

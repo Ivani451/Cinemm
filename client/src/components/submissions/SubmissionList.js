@@ -25,7 +25,7 @@ class SubmissionList extends Component {
               onClick={() => {
                 this.props.deleteSubmission(submission._id, this.props.history);
 
-                // the page is reloaded after the submission is deleted
+                // the page is reloaded after the submission is deleted.
                 window.location.reload();
               }}
             >

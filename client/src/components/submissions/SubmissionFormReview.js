@@ -52,6 +52,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   actions
-  // withRouter helps the submissionFormReview know about the history
-  // object provided by react-router
 )(SubmissionFormReview);

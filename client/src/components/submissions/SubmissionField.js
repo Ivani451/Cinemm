@@ -1,6 +1,6 @@
 import React from "react";
 
-// redux-form has some pre-made props that are stored in "input and in "meta"
+// redux-form has some pre-made props that are stored in "input" and in "meta"
 export default ({ input, label, meta: { error, touched } }) => {
   return (
     <div>
