@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "production") {
   // We will serve production code if we're in our production environment
   app.use(express.static("client/build"));
 
-  // If express does not recognize the route, then index.html sill bhe served
+  // If express does not recognize the route, then index.html will still be served
   const path = require("path");
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
